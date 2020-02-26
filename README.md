@@ -110,7 +110,7 @@ spring boot jpa实体类生成工具，能够依据数据库表生成对应的en
 
 主键依据数据库表的主键信息生成，若数据库中主键类型为字符型，则使用uuid，若数字类型则自增，使用者可以自行更改
 
-controller类预生成了部分方法，如果不配置result-value或result-builder参数，则不预生成方法
+**controller类预生成了部分方法**，如果不配置result-value或result-builder参数，则不预生成方法
 
 ## 使用
 
