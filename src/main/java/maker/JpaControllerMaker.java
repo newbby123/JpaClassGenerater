@@ -12,10 +12,10 @@ public class JpaControllerMaker extends ClassMaker{
     private final String resultValuePackagePath;
     private final String resultBuilderPackagePath;
 
-    public JpaControllerMaker(String packgePath,
+    public JpaControllerMaker(String packagePath,
                               String servicePackgePath,
                               String entityPackagePath) {
-        super(packgePath);
+        super(packagePath);
         this.servicePackagePath = servicePackgePath;
         this.entityPackagePath = entityPackagePath;
         this.resultValuePackagePath = getPackgeName(PropertiesUtil.getProperty("package.path.result-value"));
@@ -24,7 +24,7 @@ public class JpaControllerMaker extends ClassMaker{
 
     @Override
     public String generateContent(String tableName, String className, HashMap<String, String> columnMap, String primaryKey) {
-        String packgeName = getPackgeName(packgePath);
+        String packageName = getPackgeName(packagePath);
         String servicePackgeName = getPackgeName(servicePackagePath);
         String entityPackageName = getPackgeName(entityPackagePath);
 
@@ -37,7 +37,7 @@ public class JpaControllerMaker extends ClassMaker{
         idType = TypeMapping.get(idType) == null ? "String" : TypeMapping.get(idType);
 
         StringBuilder content = new StringBuilder();
-        content.append("package " + packgeName + ";\n");
+        content.append("package " + packageName + ";\n");
         content.append("\n");
         content.append("import org.springframework.beans.factory.annotation.Autowired;\n");
         if (!StringUtils.isBlank(resultValuePackagePath) && ! StringUtils.isBlank(resultBuilderPackagePath)) {

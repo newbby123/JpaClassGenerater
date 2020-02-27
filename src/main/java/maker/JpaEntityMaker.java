@@ -17,7 +17,7 @@ public class JpaEntityMaker extends ClassMaker {
     }
 
     public String generateContent(String tableName, String className, HashMap<String, String> columnMap, String primaryKey) {
-        String packgeName = getPackgeName(packgePath);
+        String packgeName = getPackgeName(packagePath);
         StringBuilder content = new StringBuilder();
         content.append("package " + packgeName + ";\n");
         content.append("\n");

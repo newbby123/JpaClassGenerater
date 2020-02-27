@@ -3,28 +3,35 @@ package maker;
 import java.util.HashMap;
 
 public class JpaServiceImplMaker extends ClassMaker {
-    private final String daoPackgePath;
+    private final String daoPackagePath;
+    private final String servicePackagePath;
 
-    public JpaServiceImplMaker(String packgePath, String daoPackgePath) {
-        super(packgePath);
-        this.daoPackgePath = daoPackgePath;
+    public JpaServiceImplMaker(
+            String packagePath,
+            String daoPackagePath,
+            String servicePackagePath) {
+        super(packagePath);
+        this.daoPackagePath = daoPackagePath;
+        this.servicePackagePath = servicePackagePath;
     }
 
     @Override
     public String generateContent(String tableName, String className, HashMap<String, String> columnMap, String primaryKey) {
-        String packgeName = getPackgeName(packgePath);
-        String daoPackgeName = getPackgeName(daoPackgePath);
+        String packageName = getPackgeName(packagePath);
+        String daoPackageName = getPackgeName(daoPackagePath);
         String entityClassName = getEntityClassName(tableName);
+        String servicePackageName = getPackgeName(servicePackagePath);
         String serviceClassName = entityClassName + "Service";
         String daoClassName = entityClassName + "Dao";
         String daoVariableName = underline2Hump(tableName) + "Dao";
 
         StringBuilder content = new StringBuilder();
-        content.append("package " + packgeName + ";\n");
+        content.append("package " + packageName + ";\n");
         content.append("\n");
         content.append("import org.springframework.beans.factory.annotation.Autowired;\n");
         content.append("import org.springframework.stereotype.Service;\n");
-        content.append("import " + daoPackgeName + "." + daoClassName + ";\n");
+        content.append("import " + servicePackageName + "." + serviceClassName + ";\n");
+        content.append("import " + daoPackageName + "." + daoClassName + ";\n");
         content.append("\n");
         content.append("/**\n");
         content.append(" *\n");

@@ -7,15 +7,15 @@ import java.util.List;
 public class Main {
 
     // 实体类包路径(绝对路径)
-    private final static String entityPackgePath = PropertiesUtil.getProperty("package.path.entity");
+    private final static String entityPackagePath = PropertiesUtil.getProperty("package.path.entity");
     // Dao层包路径(绝对路径)
-    private final static String daoPackgePath = PropertiesUtil.getProperty("package.path.dao");
+    private final static String daoPackagePath = PropertiesUtil.getProperty("package.path.dao");
     // Service层包路径(绝对路径)
-    private final static String servicePackgePath = PropertiesUtil.getProperty("package.path.service");
+    private final static String servicePackagePath = PropertiesUtil.getProperty("package.path.service");
     // Service Impl包路径(绝对路径)
-    private final static String serviceImplPackgePath = PropertiesUtil.getProperty("package.path.service-impl");
+    private final static String serviceImplPackagePath = PropertiesUtil.getProperty("package.path.service-impl");
     // Controller层包路径(绝对路径)
-    private final static String controllerPackgePath = PropertiesUtil.getProperty("package.path.controller");
+    private final static String controllerPackagePath = PropertiesUtil.getProperty("package.path.controller");
 
     // 是否生成Entity
     private final static Boolean makeEntity = Boolean.valueOf(PropertiesUtil.getProperty("make.entity"));
@@ -44,30 +44,33 @@ public class Main {
     public static void make(String tableName) {
         ClassMaker classMaker = null;
         if (makeEntity) {
-            classMaker = new JpaEntityMaker(entityPackgePath);
+            classMaker = new JpaEntityMaker(entityPackagePath);
             classMaker.setAuthor(author);
             classMaker.generate(tableName);
         }
         if (makeDao) {
-            classMaker = new JpaDaoMaker(daoPackgePath, entityPackgePath);
+            classMaker = new JpaDaoMaker(daoPackagePath, entityPackagePath);
             classMaker.setAuthor(author);
             classMaker.generate(tableName);
         }
         if (makeService) {
-            classMaker = new JpaServiceMaker(servicePackgePath);
+            classMaker = new JpaServiceMaker(servicePackagePath);
             classMaker.setAuthor(author);
             classMaker.generate(tableName);
         }
         if (makeServiceImpl) {
-            classMaker = new JpaServiceImplMaker(serviceImplPackgePath, daoPackgePath);
+            classMaker = new JpaServiceImplMaker(
+                    serviceImplPackagePath,
+                    daoPackagePath,
+                    servicePackagePath);
             classMaker.setAuthor(author);
             classMaker.generate(tableName);
         }
         if (makeController) {
             classMaker = new JpaControllerMaker(
-                    controllerPackgePath,
-                    servicePackgePath,
-                    entityPackgePath);
+                    controllerPackagePath,
+                    servicePackagePath,
+                    entityPackagePath);
             classMaker.setAuthor(author);
             classMaker.generate(tableName);
         }

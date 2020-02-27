@@ -11,17 +11,17 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public abstract class ClassMaker {
-    protected final String packgePath;
+    protected final String packagePath;
     protected String author = System.getProperty("user.name");
     protected final String date = DateTimeUtil.dateTimeToString(LocalDateTime.now(), null);
 
     public ClassMaker(String packgePath) {
-        this.packgePath = packgePath;
+        this.packagePath = packgePath;
     }
 
     public void generate(String tableName) {
         String className = getClassName(tableName);
-        String path = packgePath + "\\" + className + ".java";
+        String path = packagePath + "\\" + className + ".java";
 
         DatabaseMetadataUtil databaseMetadataUtil = new DatabaseMetadataUtil();
         String primaryKey = databaseMetadataUtil.getPrimaryKey(tableName);
@@ -92,6 +92,9 @@ public abstract class ClassMaker {
     }
 
     public String getPackgeName (String packgePath) {
+        if (StringUtils.isBlank(packgePath)) {
+            return null;
+        }
         return packgePath.substring(packgePath.indexOf("java\\")).replace("\\", ".").replace("java.", "");
     }
 

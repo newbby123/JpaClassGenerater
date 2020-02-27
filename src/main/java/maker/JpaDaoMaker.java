@@ -14,7 +14,7 @@ public class JpaDaoMaker extends ClassMaker {
 
     @Override
     public String generateContent(String tableName, String className, HashMap<String, String> columnMap, String primaryKey) {
-        String packgeName = getPackgeName(packgePath);
+        String packgeName = getPackgeName(packagePath);
         String entityPackgeName = getPackgeName(entityPackgePath);
 
         String idType = columnMap.get(primaryKey).split("#")[0].toLowerCase();
