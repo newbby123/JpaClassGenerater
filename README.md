@@ -106,7 +106,7 @@ spring boot jpa实体类生成工具，能够依据数据库表生成对应的en
 		}
 	}
 ## 说明
-生成的entity类使用lombok简化代码，使用jpa相关注解。项目需引入相关maven依赖包,相关依赖包可见我的[模板项目]()
+生成的entity类使用lombok简化代码，使用jpa相关注解。项目需引入相关maven依赖包,相关依赖包可见我的[模板项目](https://github.com/newbby123/BaseStructure)
 
 主键依据数据库表的主键信息生成，若数据库中主键类型为字符型，则使用uuid，若数字类型则自增，使用者可以自行更改
 
